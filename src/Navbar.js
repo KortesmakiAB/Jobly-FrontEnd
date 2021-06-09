@@ -9,13 +9,11 @@ function NavBar() {
 
 	return (
 		<div className="NavBar m-4">
-			<Navbar expand="md" light className="text-right">
-				<div className="justify-end">
-					<NavbarBrand href="/" className="">Jobly</NavbarBrand>
-				</div>
+			<Navbar expand="md" light >
+				<NavbarBrand href="/">Jobly</NavbarBrand>
 				
 				<NavbarToggler onClick={toggleNavbar} />
-				<Collapse isOpen={!collapsed} navbar className="NavBar-collapsed justify-content-end text-right">
+				<Collapse isOpen={!collapsed} navbar className="NavBar-collapsed justify-content-end">
 					<Nav navbar>
 						<NavItem>
 							<NavLink href="/companies">Companies</NavLink>
