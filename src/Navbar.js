@@ -1,26 +1,33 @@
-import { NavLink } from "react-router-dom";
-import { Navbar, Nav, NavItem } from "reactstrap";
-// import './NavBar.css';
+import React, { useState } from 'react';
+import { Navbar, NavbarBrand, NavbarToggler, Nav, NavItem, Collapse, NavLink } from "reactstrap";
+import './Navbar.css';
 
 function NavBar() {
-	return (
-		<div className="NavBar">
-			<Navbar expand="md">
-				<NavLink exact to="/" className="navbar-brand">
-					Jobly
-				</NavLink>
+	const [collapsed, setCollapsed] = useState(true);
 
-				<Nav className="ml-auto" navbar>
-					<NavItem>
-						<NavLink to="/companies">Companies</NavLink>
-					</NavItem>
-					<NavItem>
-						<NavLink to="/jobs">Jobs</NavLink>
-					</NavItem>
-					<NavItem>
-						<NavLink to="/profile">Profile</NavLink>
-					</NavItem>
-				</Nav>
+	const toggleNavbar = () => setCollapsed(!collapsed);
+
+	return (
+		<div className="NavBar m-4">
+			<Navbar expand="md" light className="text-right">
+				<div className="justify-end">
+					<NavbarBrand href="/" className="">Jobly</NavbarBrand>
+				</div>
+				
+				<NavbarToggler onClick={toggleNavbar} />
+				<Collapse isOpen={!collapsed} navbar className="NavBar-collapsed justify-content-end text-right">
+					<Nav navbar>
+						<NavItem>
+							<NavLink href="/companies">Companies</NavLink>
+						</NavItem>
+						<NavItem>
+							<NavLink href="/jobs">Jobs</NavLink>
+						</NavItem>
+						<NavItem>
+							<NavLink href="/profile">Profile</NavLink>
+						</NavItem>
+					</Nav>
+				</Collapse>
 			</Navbar>
 		</div>
   );
