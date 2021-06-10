@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import JoblyApi from './api';
-import Company from './RoutesComp';
+import CompanyCard from './CompanyCard';
 import './RoutesComps.css';
 import Search from './Search';
 
@@ -33,7 +33,7 @@ function Companies() {
 				<div className="">
 					{ companies.map(co => 
 						<Link key={co.handle} to={`/companies/${co.handle}`} className="text-decoration-none">
-							<Company  
+							<CompanyCard  
 								name={co.name} 
 								handle={co.handle} 
 								description={co.description} 

@@ -1,4 +1,9 @@
+.Company {
+    max-height: 200px;
+}
+
 .Logo {
     width: 50px;
     font-size: .7rem;
 }
+
