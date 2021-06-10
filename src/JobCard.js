@@ -1,9 +1,7 @@
 import { Card, CardText, CardBody, CardTitle } from 'reactstrap';
-import './CompanyCard.css';
 
 
-
-function JobCard({ name, title, salary, equity, logoUrl }) {
+function JobCard({ name, title, salary, equity }) {
 	  
     return (
 		<Card className="Company mb-4 p-3 shadow-sm">
@@ -11,10 +9,10 @@ function JobCard({ name, title, salary, equity, logoUrl }) {
 				<CardTitle tag="h4" className=""> 
 					{ title }
 				</CardTitle>
+                <h6>{name}</h6>
 				<CardText>
-                    <h6>{name}</h6>
-                    <div><small>Salary: {salary ? `$${salary}` : 'N/A'}</small></div>
-                    <div><small>Equity: {equity || 0}</small></div>
+                    <small className="d-block">Salary: {salary ? `$${salary}` : 'N/A'}</small>
+                    <small className="d-block">Equity: {equity || 0}</small>
                 </CardText>
 			</CardBody>
 		</Card>

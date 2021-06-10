@@ -27,9 +27,9 @@ function Companies() {
 	};
 	
     return (
-		<div className="d-block row Companies">
+		<div className="row Companies">
 			<div className="col-md-8 offset-md-2">
-				<Search handleCoSearch={handleCoSearch} />
+				<Search handleSearch={handleCoSearch} />
 				<div className="">
 					{ companies.map(co => 
 						<Link key={co.handle} to={`/companies/${co.handle}`} className="text-decoration-none">

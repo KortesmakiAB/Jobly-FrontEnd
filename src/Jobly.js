@@ -5,8 +5,6 @@ import NavBar from "./Navbar";
 import Routes from "./Routes";
 
 function Jobly() {
-
-
     
   return (
     <div className="Jobly">

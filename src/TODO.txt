@@ -1,0 +1,8 @@
+Handle No Search Results
+
+Make Photos Context 
+	subscribe in: CompanyCard, RoutesComp
+	Clean up: CompCard.css, RoutesComp.css
+
+CompanyCard:
+On hover add shadow

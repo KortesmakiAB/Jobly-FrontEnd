@@ -5,7 +5,7 @@ import { Button, Form, Label, Input } from 'reactstrap';
 // import './Routes.css';
 
 
-function Search({ handleCoSearch }) {
+function Search({ handleSearch }) {
     const [search, setSearch] = useState('');
 
     const handleChange = (evt) => {
@@ -15,7 +15,7 @@ function Search({ handleCoSearch }) {
     const handleSubmit = (evt) => {
         evt.preventDefault();
 
-        handleCoSearch(search);
+        handleSearch(search);
 
     }
 

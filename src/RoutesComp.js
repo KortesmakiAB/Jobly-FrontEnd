@@ -10,7 +10,7 @@ import logo3 from './logos/logo3.png';
 import logo4 from './logos/logo4.png';
 
 
-function Company({}) {
+function Company() {
     const { company: handle } = useParams();
 	const [company, setCompany] = useState({});
 
@@ -28,11 +28,11 @@ function Company({}) {
 			setCompany(() => comp);
 		})();
 	
-	}, []); 
+	}, [handle]); 
 
 	
     return (
-		<div className="d-block row Companies">
+		<div className="row Companies">
 			<div className="col-md-8 offset-md-2">
 				<h4>
                     {company.name}
