@@ -32,25 +32,23 @@ function Company() {
 
 	
     return (
-		<div className="row Companies">
-			<div className="col-md-8 offset-md-2">
-				<h4>
-                    {company.name}
-                    <img src={logos[company.logoUrl]} alt={`${company.name} logo`} className="Logo"></img>
-                </h4>
-                <p>{company.description}</p>
-                <div className="">
-					{ company.jobs && company.jobs.map(job => 
-                        <JobCard 
-                            key={job.id}
-                            name={company.name}
-							title={job.title} 
-							salary={job.salary} 
-							equity={job.equity} 
-							logoUrl={company.logoUrl}
-						/>
-					)}
-				</div>
+		<div className="Company">
+			<h4>
+				{company.name}
+				<img src={logos[company.logoUrl]} alt={`${company.name} logo`} className="Logo"></img>
+			</h4>
+			<p>{company.description}</p>
+			<div className="">
+				{ company.jobs && company.jobs.map(job => 
+					<JobCard 
+						key={job.id}
+						name={company.name}
+						title={job.title} 
+						salary={job.salary} 
+						equity={job.equity} 
+						logoUrl={company.logoUrl}
+					/>
+				)}
 			</div>
 		</div>
     );

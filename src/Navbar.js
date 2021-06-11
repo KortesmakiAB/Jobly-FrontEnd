@@ -7,6 +7,31 @@ function NavBar() {
 
 	const toggleNavbar = () => setCollapsed(!collapsed);
 
+	const notAuth = (
+		<Nav navbar>
+			<NavItem>
+				<NavLink href="/login">Login</NavLink>
+			</NavItem>
+			<NavItem>
+				<NavLink href="/signup">Sign up</NavLink>
+			</NavItem>
+		</Nav>		
+	);
+
+	const auth = (
+		<Nav navbar>
+			<NavItem>
+				<NavLink href="/companies">Companies</NavLink>
+			</NavItem>
+			<NavItem>
+				<NavLink href="/jobs">Jobs</NavLink>
+			</NavItem>
+			<NavItem>
+				<NavLink href="/profile">Profile</NavLink>
+			</NavItem>
+		</Nav>
+	);
+
 	return (
 		<div className="NavBar m-4">
 			<Navbar expand="md" light >
@@ -14,17 +39,8 @@ function NavBar() {
 				
 				<NavbarToggler onClick={toggleNavbar} />
 				<Collapse isOpen={!collapsed} navbar className="NavBar-collapsed justify-content-end">
-					<Nav navbar>
-						<NavItem>
-							<NavLink href="/companies">Companies</NavLink>
-						</NavItem>
-						<NavItem>
-							<NavLink href="/jobs">Jobs</NavLink>
-						</NavItem>
-						<NavItem>
-							<NavLink href="/profile">Profile</NavLink>
-						</NavItem>
-					</Nav>
+					{/* {auth} */}
+					{notAuth}
 				</Collapse>
 			</Navbar>
 		</div>

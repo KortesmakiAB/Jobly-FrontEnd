@@ -13,29 +13,34 @@ import SignUp from './RoutesSignUp';
 
 function Routes() {
     return (
-        <Switch>
-            <Route exact path="/home">
-                <Home />
-            </Route>
-            <Route exact path="/companies">
-                <Companies />                
-            </Route>
-            <Route exact path="/companies/:company">
-                <Company />              
-            </Route>
-            <Route exact path="/jobs">
-                <Jobs />
-            </Route>
-            <Route exact path="/profile">
-                <Profile />
-            </Route>
-            <Route exact path="/login">
-                <Login />
-            </Route>
-            <Route exact path="/signup">
-                <SignUp />
-            </Route>
-        </Switch>
+        <div className="row">
+            <div className="col-md-8 offset-md-2">
+                <Switch>
+                    <Route exact path="/">
+                        <Home />
+                    </Route>
+                    <Route exact path="/companies">
+                        <Companies />                
+                    </Route>
+                    <Route exact path="/companies/:company">
+                        <Company />              
+                    </Route>
+                    <Route exact path="/jobs">
+                        <Jobs />
+                    </Route>
+                    <Route exact path="/profile">
+                        <Profile />
+                    </Route>
+                    <Route exact path="/login">
+                        <Login />
+                    </Route>
+                    <Route exact path="/signup">
+                        <SignUp />
+                    </Route>
+                 </Switch>
+            </div>
+        </div>
+        
     );
 }
 

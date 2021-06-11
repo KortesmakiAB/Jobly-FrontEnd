@@ -29,8 +29,7 @@ function Jobs() {
 	};
 
   return (
-    <div className="Jobs row">
-      <div className="col-md-8 offset-md-2">
+    <div className="Jobs">
         <Search handleSearch={handleJobSearch} />
         <div>
           { jobs.map(job => 
@@ -43,7 +42,6 @@ function Jobs() {
             />
           )}
         </div>
-      </div>
     </div>
   );
 }
