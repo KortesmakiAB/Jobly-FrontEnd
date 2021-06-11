@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useState, useContext } from 'react';
 import CurrUserContext from './CurrUserContext';
 import { useHistory } from 'react-router-dom';
 import { Button, Form, Label, Input, FormGroup } from 'reactstrap';
@@ -38,6 +38,7 @@ function SignUp() {
 			const user = await JoblyApi.getUser(formData.username);
 			setCurrUser(() => ({
 				...user,
+				token
 			}));
 		})();
 		
@@ -63,7 +64,7 @@ function SignUp() {
 					<Input 
 						id="password" 
 						name="password"
-						type="text"
+						type="password"
 						value={formData.password }
 						onChange={handleChange}
 					></Input>
@@ -102,7 +103,6 @@ function SignUp() {
 				<Button color="primary" className="" >Submit</Button>
 			</Form>
 		</div>
-        
     );
 }
 

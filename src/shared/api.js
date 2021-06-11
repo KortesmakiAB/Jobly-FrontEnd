@@ -74,7 +74,6 @@ class JoblyApi {
   static async signIn(unPw) {
     const method = 'POST';
     let res = await this.request(`auth/token`, unPw, method);
-    console.log(res.token);
     return res.token;
   }
   

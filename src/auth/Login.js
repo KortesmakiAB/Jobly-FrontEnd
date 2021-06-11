@@ -1,11 +1,20 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import CurrUserContext from './CurrUserContext';
+import { useHistory } from 'react-router-dom';
 import { Button, Form, Label, Input, FormGroup } from 'reactstrap';
+import JoblyApi from '../shared/api';
 
 import './Login.css';
 
-
 function Login() {
-    const [unPw, setUnPw] = useState({});
+	const initialState = {
+		username: 'testUserName',
+		password: 'testPassword',
+	}
+	const [unPw, setUnPw] = useState(initialState);
+
+	const { setCurrUser } = useContext(CurrUserContext);
+	const history = useHistory();
     
     const handleChange = (evt) => {
 		const { name, value } = evt.target;
@@ -18,11 +27,21 @@ function Login() {
     const handleSubmit = (evt) => {
         evt.preventDefault();
 
-		// TODO
-        // handleSearch(search);
+		(async () => {
+			const token = await JoblyApi.signIn(unPw);
 
-		// Redirect
+			if (token){
+				JoblyApi.token = token;
+				
+				const user = await JoblyApi.getUser(unPw.username);
+				setCurrUser(() => ({
+					...user,
+					token
+				}));
+			}
 
+			history.push('/');
+		})();
     };
 
     return (
