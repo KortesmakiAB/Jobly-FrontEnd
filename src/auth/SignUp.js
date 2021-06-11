@@ -1,11 +1,24 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import CurrUserContext from './CurrUserContext';
+import { useHistory } from 'react-router-dom';
 import { Button, Form, Label, Input, FormGroup } from 'reactstrap';
+import JoblyApi from '../shared/api';
 
-import './RoutesSignUp.css';
+import './SignUp.css';
 
 
-function SignUp({ handleSearch }) {
-    const [formData, setFormData] = useState({});
+function SignUp() {
+	const { setCurrUser } = useContext(CurrUserContext);
+	const history = useHistory(); 
+
+	const initialState = {
+		username: 'testUserName',
+		password: 'testPassword',
+		firstName: 'testFirst',
+		lastName: 'testLast',
+		email: 'test@test.com'
+	}
+    const [formData, setFormData] = useState(initialState);
 
     const handleChange = (evt) => {
 		const { name, value } = evt.target;
@@ -18,11 +31,17 @@ function SignUp({ handleSearch }) {
     const handleSubmit = (evt) => {
         evt.preventDefault();
 
-		// TODO
-        // handleSearch(search);
+		(async () =>{
+			const token = await JoblyApi.signUp(formData);
+			JoblyApi.token = token;
 
-		// Redirect
-
+			const user = await JoblyApi.getUser(formData.username);
+			setCurrUser(() => ({
+				...user,
+			}));
+		})();
+		
+		history.push('/');
     };
 
     return (
@@ -35,7 +54,7 @@ function SignUp({ handleSearch }) {
 						id="username" 
 						name="username"
 						type="text"
-						value={formData.username} 
+						value={formData.username }
 						onChange={handleChange}
 					></Input>
 				</FormGroup>
@@ -45,7 +64,7 @@ function SignUp({ handleSearch }) {
 						id="password" 
 						name="password"
 						type="text"
-						value={formData.password} 
+						value={formData.password }
 						onChange={handleChange}
 					></Input>
 				</FormGroup>
@@ -55,7 +74,7 @@ function SignUp({ handleSearch }) {
 						id="firstName" 
 						name="firstName"
 						type="text"
-						value={formData.firstName} 
+						value={formData.firstName } 
 						onChange={handleChange}
 					></Input>
 				</FormGroup>
@@ -75,7 +94,7 @@ function SignUp({ handleSearch }) {
 						id="email" 
 						name="email"
 						type="text"
-						value={formData.email} 
+						value={formData.email }
 						onChange={handleChange}
 					></Input>
 				</FormGroup>

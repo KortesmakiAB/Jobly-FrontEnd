@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import { Button, Form, Label, Input, FormGroup } from 'reactstrap';
 
-import './RoutesLogin.css';
+import './Login.css';
 
 
-function Login({ handleSearch }) {
+function Login() {
     const [unPw, setUnPw] = useState({});
     
-
     const handleChange = (evt) => {
 		const { name, value } = evt.target;
         setUnPw(uP => ({
@@ -38,6 +37,7 @@ function Login({ handleSearch }) {
 						type="text"
 						value={unPw.username} 
 						onChange={handleChange}
+						placeholder=""
 					></Input>
 				</FormGroup>
 				<FormGroup className="mb-3">
@@ -48,6 +48,7 @@ function Login({ handleSearch }) {
 						type="password"
 						value={unPw.password} 
 						onChange={handleChange}
+						placeholder=""
 					></Input>
 				</FormGroup>
 				

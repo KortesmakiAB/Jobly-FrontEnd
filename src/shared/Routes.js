@@ -1,14 +1,11 @@
 import { Route, Switch } from 'react-router-dom';
-import Companies from "./RoutesComps";
-import Company from './RoutesComp';
-import Jobs from './RoutesJobs';
-import Profile from './UserProfile';
-import Home from './RoutesHome';
-import Login from './RoutesLogin';
-import SignUp from './RoutesSignUp';
-
-// import './Routes.css';
-
+import Companies from "../companies/Companies";
+import Company from '../companies/Company';
+import Jobs from '../jobs/Jobs';
+import Profile from '../profile/UserProfile';
+import Home from '../home/Home';
+import Login from '../auth/Login';
+import SignUp from '../auth/SignUp';
 
 
 function Routes() {
@@ -40,7 +37,6 @@ function Routes() {
                  </Switch>
             </div>
         </div>
-        
     );
 }
 

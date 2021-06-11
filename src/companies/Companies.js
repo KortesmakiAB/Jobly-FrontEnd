@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import JoblyApi from './api';
+import JoblyApi from '../shared/api';
 import CompanyCard from './CompanyCard';
-import './RoutesComps.css';
-import Search from './Search';
+import './Companies.css';
+import Search from '../shared/Search';
 
 function Companies() {
 	const [companies, setCompanies] = useState([]);

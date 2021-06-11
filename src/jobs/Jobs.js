@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import JoblyApi from './api';
+import JoblyApi from '../shared/api';
 import JobCard from './JobCard';
-import Search from "./Search";
+import Search from "../shared/Search";
 
 // import './Jobs.css';
 

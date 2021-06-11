@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
-import JobCard from './JobCard';
-import JoblyApi from './api';
-import './RoutesComp.css';
+import JobCard from '../jobs/JobCard';
+import JoblyApi from '../shared/api';
+import './Company.css';
 
-import logo1 from './logos/logo1.png';
-import logo2 from './logos/logo2.png';
-import logo3 from './logos/logo3.png';
-import logo4 from './logos/logo4.png';
+import logo1 from '../logos/logo1.png';
+import logo2 from '../logos/logo2.png';
+import logo3 from '../logos/logo3.png';
+import logo4 from '../logos/logo4.png';
 
 
 function Company() {
