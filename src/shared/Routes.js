@@ -1,6 +1,4 @@
-import { useContext } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import CurrUserContext from '../auth/CurrUserContext';
 import Companies from "../companies/Companies";
 import Company from '../companies/Company';
 import Jobs from '../jobs/Jobs';
@@ -8,29 +6,10 @@ import Profile from '../profile/UserProfile';
 import Home from '../home/Home';
 import Login from '../auth/Login';
 import SignUp from '../auth/SignUp';
-
-const protectedRoutes = () => {
-    return (
-        <>
-        <Route exact path="/companies">
-            <Companies />                
-        </Route>
-        <Route exact path="/companies/:company">
-            <Company />              
-        </Route>
-        <Route exact path="/jobs">
-            <Jobs />
-        </Route>
-        <Route exact path="/profile">
-            <Profile />
-        </Route>
-        </>
-    );
-};
+import ProtectedRoute from './ProtectedRoute';
 
 
 function Routes() {
-    const { currUser } = useContext(CurrUserContext);
 
     return (
         <div className="row">
@@ -40,15 +19,30 @@ function Routes() {
                         <Home />
                     </Route>
 
-                    { currUser && protectedRoutes() }
-
                     <Route exact path="/login">
                         <Login />
                     </Route>
+
                     <Route exact path="/signup">
                         <SignUp />
                     </Route>
-                    
+
+                    <ProtectedRoute exact path="/companies">
+                        <Companies />                
+                    </ProtectedRoute>
+
+                    <ProtectedRoute exact path="/companies/:company">
+                        <Company />              
+                    </ProtectedRoute>
+
+                    <ProtectedRoute exact path="/jobs">
+                        <Jobs />
+                    </ProtectedRoute>
+
+                    <ProtectedRoute exact path="/profile">
+                        <Profile />
+                    </ProtectedRoute>
+
                     <Redirect to="/" />
                  </Switch>
             </div>
