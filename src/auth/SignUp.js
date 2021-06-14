@@ -1,9 +1,11 @@
 import { useState, useContext } from 'react';
-import CurrUserContext from './CurrUserContext';
 import { useHistory } from 'react-router-dom';
 import { Button, Form, Label, Input, FormGroup } from 'reactstrap';
-import JoblyApi from '../shared/api';
 
+import CurrUserContext from './CurrUserContext';
+import JoblyApi from '../shared/api';
+import useLocalStorage from '../shared/useLocalStorage';
+import { TOKEN_STORAGE_KEY } from '../Jobly/Jobly';
 import './SignUp.css';
 
 
@@ -19,6 +21,7 @@ function SignUp() {
 		email: 'test@test.com'
 	}
     const [formData, setFormData] = useState(initialState);
+	const [token, setToken] = useLocalStorage(TOKEN_STORAGE_KEY);
 
     const handleChange = (evt) => {
 		const { name, value } = evt.target;
@@ -32,13 +35,13 @@ function SignUp() {
         evt.preventDefault();
 
 		(async () =>{
-			const token = await JoblyApi.signUp(formData);
-			JoblyApi.token = token;
+			const respToken = await JoblyApi.signUp(formData);
+			JoblyApi.token = respToken;
+			setToken(respToken);
 
 			const user = await JoblyApi.getUser(formData.username);
 			setCurrUser(() => ({
 				...user,
-				token
 			}));
 		})();
 		

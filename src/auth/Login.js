@@ -1,8 +1,11 @@
 import { useState, useContext } from 'react';
-import CurrUserContext from './CurrUserContext';
 import { useHistory } from 'react-router-dom';
 import { Button, Form, Label, Input, FormGroup } from 'reactstrap';
+
 import JoblyApi from '../shared/api';
+import CurrUserContext from './CurrUserContext';
+import useLocalStorage from '../shared/useLocalStorage';
+import { TOKEN_STORAGE_KEY } from '../Jobly/Jobly';
 
 import './Login.css';
 
@@ -12,6 +15,7 @@ function Login() {
 		password: 'testPassword',
 	}
 	const [unPw, setUnPw] = useState(initialState);
+	const [token, setToken] = useLocalStorage(TOKEN_STORAGE_KEY);
 
 	const { setCurrUser } = useContext(CurrUserContext);
 	const history = useHistory();
@@ -28,15 +32,15 @@ function Login() {
         evt.preventDefault();
 
 		(async () => {
-			const token = await JoblyApi.signIn(unPw);
+			const respToken = await JoblyApi.signIn(unPw);
 
-			if (token){
-				JoblyApi.token = token;
+			if (respToken){
+				JoblyApi.token = respToken;
+				setToken(respToken);
 				
 				const user = await JoblyApi.getUser(unPw.username);
 				setCurrUser(() => ({
 					...user,
-					token
 				}));
 			}
 

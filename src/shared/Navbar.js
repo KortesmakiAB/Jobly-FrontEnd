@@ -1,11 +1,15 @@
 import React, { useState, useContext } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
-import CurrUserContext from '../auth/CurrUserContext';
 import { Navbar, NavbarBrand, NavbarToggler, Nav, NavItem, Collapse } from "reactstrap";
+
+import CurrUserContext from '../auth/CurrUserContext';
+import useLocalStorage from './useLocalStorage'; 
+import { TOKEN_STORAGE_KEY } from '../Jobly/Jobly';
 import './Navbar.css';
 
 function NavBar() {
 	const [collapsed, setCollapsed] = useState(true);
+	const [token, setToken] = useLocalStorage(TOKEN_STORAGE_KEY);
 
 	const { currUser, setCurrUser } = useContext(CurrUserContext);
 	const history = useHistory();
@@ -14,6 +18,7 @@ function NavBar() {
 
 	const handleLogOut = () => {
 		setCurrUser(null);
+		setToken(null);
 
 		history.push('/');
 	};

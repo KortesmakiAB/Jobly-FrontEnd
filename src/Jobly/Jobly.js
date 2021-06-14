@@ -1,10 +1,41 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import jwt from "jsonwebtoken";
+
 import NavBar from "../shared/Navbar";
 import Routes from "../shared/Routes";
 import CurrUserContext from '../auth/CurrUserContext';
+import useLocalStorage from '../shared/useLocalStorage';
+import JoblyApi from '../shared/api';
+
+const TOKEN_STORAGE_KEY = "jobly-token";
+
 
 function Jobly() {
   const [currUser, setCurrUser] = useState(null);
+  const [applicationIds, setApplicationIds] = useState(new Set([]));
+  
+  const [token, setToken] = useLocalStorage();
+
+  useEffect(() => {
+    (async () => {
+      if (token) {
+        try {
+          let { username } = jwt.decode(token);
+          // put the token on the Api class, which requires a token to call the API.
+          JoblyApi.token = token;
+          let currentUser = await JoblyApi.getUser(username);
+          setCurrUser(currentUser);
+          setApplicationIds(new Set(currentUser.applications));
+        } catch (err) {
+          console.error("App loadUserInfo: problem loading", err);
+          setCurrUser(null);
+        }
+      }
+
+    })();
+    
+  }, [token]);
+  
 
   return (
     <div className="Jobly">
@@ -17,3 +48,4 @@ function Jobly() {
 }
 
 export default Jobly;
+export { TOKEN_STORAGE_KEY };
