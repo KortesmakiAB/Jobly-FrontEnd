@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button, Form, Label, Input, FormGroup } from 'reactstrap';
 import CurrUserContext from '../auth/CurrUserContext';
@@ -7,12 +7,14 @@ import JoblyApi from '../shared/api';
 // import './UserProfile.css';
 
 
-
 function Profile() {
 	const { currUser, setCurrUser } = useContext(CurrUserContext);
-	const currUserPw = currUser.password;
+
 	const [formData, setFormData] = useState({
-		...currUser,
+		username: currUser.username,
+		firstName: currUser.firstName,
+		lastName: currUser.lastName,
+		email: currUser.email,
 		password: ''
 	});	
 	const history = useHistory();
@@ -27,23 +29,28 @@ function Profile() {
 
 	const handleSubmit = (evt) => {
         evt.preventDefault();
-
+		
 		(async () => {
-			const token = await JoblyApi.signIn({ username: currUser.username, password:formData.password });
+			const validPw = await JoblyApi.validate({
+				username: currUser.username,
+				password: formData.password, 
+			});
 
-			if (currUser.token === token){
-				const currUserCopy = {...currUser}
-				delete currUserCopy.username;
-				const updatedUser = await JoblyApi.updateUser(currUser.username, currUserCopy);
+			if (validPw){
+				const updatedUser = await JoblyApi.updateUser(currUser.username, {
+					firstName: formData.firstName,
+					lastName: formData.lastName,
+					email: formData.email,
+				});
+				
 				setCurrUser(() => ({
 					...updatedUser,
 				}));
-				console.log('user', updatedUser)
+
+				history.push('/');
 			}
-
-			history.push('/');
+			
 		})();
-
     };
 
 
