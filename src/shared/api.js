@@ -82,6 +82,12 @@ class JoblyApi {
     return await this.request('auth/validate', unPw);
   }  
 
+  // queryString with username and id = > {applied: jobId}
+  static async applyJob(username, id) {
+    const method = 'POST';
+    return await this.request(`users/${username}/jobs/${id}`, null, method);
+  }
+
 }
 
 

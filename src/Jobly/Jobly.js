@@ -15,7 +15,7 @@ function Jobly() {
   const [currUser, setCurrUser] = useState(null);
   const [applicationIds, setApplicationIds] = useState(new Set([]));
   
-  const [token, setToken] = useLocalStorage(TOKEN_STORAGE_KEY);
+  const [token] = useLocalStorage(TOKEN_STORAGE_KEY);
 
   useEffect(() => {
     setInfoLoaded(false);
