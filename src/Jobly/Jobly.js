@@ -11,12 +11,14 @@ const TOKEN_STORAGE_KEY = "jobly-token";
 
 
 function Jobly() {
+  const [infoLoaded, setInfoLoaded] = useState(false);
   const [currUser, setCurrUser] = useState(null);
   const [applicationIds, setApplicationIds] = useState(new Set([]));
   
-  const [token, setToken] = useLocalStorage();
+  const [token, setToken] = useLocalStorage(TOKEN_STORAGE_KEY);
 
   useEffect(() => {
+    setInfoLoaded(false);
     (async () => {
       if (token) {
         try {
@@ -31,11 +33,12 @@ function Jobly() {
           setCurrUser(null);
         }
       }
-
+      setInfoLoaded(true);
     })();
     
   }, [token]);
   
+  if (!infoLoaded) return 'loading...';
 
   return (
     <div className="Jobly">

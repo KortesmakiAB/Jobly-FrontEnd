@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import JoblyApi from '../shared/api';
 import JobCard from './JobCard';
 import Search from "../shared/Search";
-
 // import './Jobs.css';
 
 
@@ -10,7 +9,6 @@ function Jobs() {
   const [jobs, setJobs] = useState([]);
 
 	useEffect(() => {
-		
 		(async () => {
 			let jobs = await JoblyApi.getOrSearchAllJobs();
 			setJobs(() => jobs);
