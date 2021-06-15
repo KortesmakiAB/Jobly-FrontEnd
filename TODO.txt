@@ -2,9 +2,9 @@ REMOVE FORM DEFAULT VALUES! (3 PAGES)
 
 add try/catch for JoblyApi.something() calls
 
-@Profile, handle invalid pw
+UserProfile: handle invalid pw
 
-Handle No Search Results
+Handle No Search Results in Jobs/Companies
 
 Make Photos Context 
 	subscribe in: CompanyCard, RoutesComp
